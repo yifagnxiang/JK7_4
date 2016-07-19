@@ -2,8 +2,9 @@
     ViewBag.Title = "Product";
 }
 
+
 <h2>Product</h2>
-<select id="select_option_type">
+类型：<select id="select_option_type">
     <option value="1">静态停泊</option>
     <option value="2">户外运动套餐</option>
     <option value="3">学习体验</option>
@@ -14,5 +15,22 @@
     <option value="8">休闲娱乐</option>
 </select>
 <div>
-    <img />
+    图片上传： <input type="file" name="file_img" />
+</div>
+<div>
+   
+   内容：<textarea name="content"></textarea>
+</div>
+<div>
+    时间：<input type="date" />
+</div>
+<div>
+    限定人数：<input type="number" name="number" />
+</div>
+<div>
+    价格：<input type="text" name="price" />
+</div>
+
+<div>
+    价格：<input type="button" id="but_submit" value="提交" />
 </div>
