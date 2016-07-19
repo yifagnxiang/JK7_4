@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Retrieve";
+}
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="email=no">
+<link rel="stylesheet" type="text/css" href="/css/reset.css" />
+<link rel="stylesheet" type="text/css" href="/css/index.css" />
+<title>会员类型选择页面</title>
+<body>
+    <div id="wrap" class="active_wrap">
+        <div id="content">
+            <div id="active_input">
+                <input type="text" name="category" id="category" placeholder="下拉选择会员类型" readonly="readonly" />
+                <img id="type_choose" src="/img/check_icon.png" />
+                <input type="text" name="activeNumber" id="activeNumber" placeholder="请输入激活码" />
+                <div id="floating" class="hide">
+                    <span class="searcher"><img class="pointer" src="/img/point.png">&nbsp;&nbsp;探索师</span><hr class="hr1">
+                    <span class="partner"><img class="pointer" src="/img/point.png">&nbsp;&nbsp;合伙人</span><hr class="hr2">
+                    <span class="item_VIP"><img class="pointer pointer_3" src="/img/point.png">&nbsp;&nbsp;&nbsp;VIP</span>
+                </div>
+            </div>
+            <div id="explain"><span>激活码为会员卡上的NO.xxxxxx，如果您尚未购卡，请联系我们的客服进行购买</span></div>
+            <a href="#"><img class="btn_active" src="/img/btn_active.png" /></a>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#category').click(function () {
+                $('#floating').toggleClass('hide');
+                $('.searcher').click(function () {
+                    $('#category').val('探索师');
+                    $('#floating').addClass('hide');
+                });
+                $('.partner').click(function () {
+                    $('#category').val('合伙人');
+                    $('#floating').addClass('hide');
+                });
+                $('.item_VIP').click(function () {
+                    $('#category').val('VIP');
+                    $('#floating').addClass('hide');
+                });
+            });
+            $('#type_choose').click(function () {
+                $('#floating').toggleClass('hide');
+                $('.searcher').click(function () {
+                    $('#category').val('探索师');
+                    $('#floating').addClass('hide');
+                });
+                $('.partner').click(function () {
+                    $('#category').val('合伙人');
+                    $('#floating').addClass('hide');
+                });
+                $('.item_VIP').click(function () {
+                    $('#category').val('VIP');
+                    $('#floating').addClass('hide');
+                });
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $(".btn_active").click(function () {
+                var category = $("#category").val();
+                var number = $("#activeNumber").val();
+                var select_option = category == "探索师" ? 1 : category == "合伙人" ? 2 : category=="VIP"?3:0;
+                if (category == "" || category==0) {
+                    alert("请选择会员类型！");
+                    return;
+                }
+                else if (activeNumber == "") {
+                    alert(" 请输入激活码！");
+                    return;
+                }
+                $.post("/Retrieve/Post_Activate", { activenumber: number, select_option: select_option }, function (data) {
+                   
+                    if (data == "Success") {
+                        alert("一个账户只能激活一个卡号！");
+                        location.href = "/Home/Index";
+                        return;
+                    }
+                    else if (data == "Defeated") {
+                        alert("卡号激活失败！");
+                        return;
+                    }
+                    else if (data == "D") {
+                        alert("激活类型和卡号不正确！");
+                        return;
+                    }
+                    else if (data == "Activate") {
+                        alert("次卡号已激活过！");
+                        return;
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+
+

@@ -1,0 +1,590 @@
+/*首页及通用样式表*/
+.hide {
+	display: none;
+}
+#wrap {
+	width: 100%;
+}
+@font-face {
+	font-family: boldFont;
+	src: url(css/PINGFANG BOLD.TTF);
+}
+@font-face {
+	font-family: mediumFont;
+	src: url(css/PINGFANG MEDIUM.TTF);
+}
+#header {
+	width: 100%;
+	height: 3.6em;
+	border: 1px solid black;
+	background: #000000;
+}
+
+#content {
+	text-align: center;
+	overflow-x: hidden;
+}
+.page1_up img {
+	width: 100%;
+}
+.page1_down img {
+	width: 100%;
+}
+.page1_font img {
+	width: 2.8%;
+}
+.page1_font span {
+	color: #4f73a9;
+	font-family: boldFont,'微软雅黑';
+	font-weight: bold;
+	font-size: 1.1em;
+	line-height: 4em;
+}
+
+#footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: #fafafa;
+	border-top: 1px solid #bfbfbf;
+}
+.icon {
+	float: left;
+	width: 15%;
+	height: 4em;
+	border-right: 1px solid #bfbfbf;
+	background: #fafafa url(../img/icon.png) center center no-repeat;
+	background-size: contain;
+	cursor: pointer;
+}
+.product_center,.VIPcenter {
+	float: left;
+	width: 42%;
+	text-align: center;
+	color: rgb(49,50,50);
+	line-height: 3.3em;
+	font-family: boldFont,'微软雅黑';
+	font-size: 1.2em;
+	cursor: pointer;
+}
+.product_center {
+	border-right: 1px solid #bfbfbf;
+}
+
+	/*小屏手机适配样式（如iphone5）*/
+	@media only screen and (max-width: 321px ) {
+		.icon {
+			height: 3em;
+			border-right: 1px solid #bfbfbf;
+			background: #fafafa url(../img/icon.png) center center no-repeat;
+			background-size: contain;
+		}
+		.product_center,.VIPcenter {
+			width: 42%;
+			line-height: 2.8em;
+			font-size: 1.1em;
+		}
+	}
+
+
+/*产品中心及预约页面样式表*/
+.content_productCenter {
+	position: fixed;
+	width: 100%;
+	height: 1000em;
+	background: #f4f4f4;
+}
+.emotion {
+	width: 37%;
+	margin-top: 20%;
+	margin-bottom: 4.5%;
+}
+.content_productCenter span {
+	display: block;
+	color: rgb(111,111,111);
+	margin-top: 2%;
+	font-family: mediumFont,"微软雅黑";
+	font-size: 1.1em;
+}
+.btn_dingzhi {
+	width: 37%;
+	margin-top: 8%;
+}
+
+/*个人中心页面样式表*/
+.content_personCenter {
+	position: relative;
+}
+.page3_up,.page3_down {
+	width: 100%;
+}
+.page3_up {
+	margin-bottom: 2.5%;
+}
+.page3_up_btn,.page3_down_btn {
+	position: absolute;
+	width: 35%;
+	left: 32.5%;
+}
+.page3_up_btn {
+	top: 18%;
+}
+.page3_down_btn {
+	bottom: 18%;
+}
+
+/*个人中心定制成功页面*/
+#page_make_2 .emotion {
+	width: 20%;
+	margin-top: 28%;
+}
+.page_make_bold {
+	font-size: 1.2em !important;
+	font-family: boldFont,"微软雅黑" !important;
+	font-weight: bold !important;
+	color: rgb(49,50,50) !important;
+}
+.page_make_medium1,.page_make_medium2 {
+	font-family: mediumFont,"微软雅黑";
+	color: rgb(119,119,119) !important;
+	margin-top: 2.5% !important;
+	font-size: 0.9em !important;
+}
+.page_make_medium1 {
+	margin-bottom: -1% !important;
+}
+
+/*个人中心定制页面样式表*/
+main {
+	position: absolute;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+#make_info {
+	position: relative;
+	width: 80%;
+	margin: 15% auto;
+	margin-bottom: 0;
+}
+#make_info input {
+	width: 55%;
+	height: 4em;
+	border-radius: 4px;
+	border: 1px solid #D1D1D1;
+	margin-bottom: 5%;
+	background: #f4f4f4;
+	padding-left: 33%;
+	padding-top: 0.2%;
+	font-size: 1em;
+	color: rgb(91,91,91);
+	font-family: mediumFont,"微软雅黑";
+}
+#make_info span {
+	position: absolute;
+	color: rgb(91,91,91);
+	font-family: boldFont,"微软雅黑";
+	font-size: 1.05em;
+	line-height: 4em;
+	left: 11%;
+	margin-top: 0;
+}
+#page_make_1 img {
+	width: 69%;
+	margin-top: 3%;
+	cursor: pointer;
+}
+	/*小屏手机样式表（如iphone5）*/
+	@media only screen and (max-width: 321px) {
+		#make_info input {
+			width: 60%;
+			line-height: 2em;
+			margin-bottom: 7%;
+			padding-left: 36%;
+			font-size: 0.7em;
+			color: rgb(91,91,91);
+			font-family: mediumFont,"微软雅黑";
+		}
+		#make_info span {
+			font-size: 1.1em;
+			line-height: 3.3em;
+			left: 5%;
+		}
+		#page_make_1 img {
+			width: 75.5%;
+			margin-top: 3%;
+			cursor: pointer;
+		}
+	}
+	
+	/*大屏手机（如ipad）样式表*/
+	@media only screen and (min-width: 450px) and (max-width: 525px) {
+		#make_info input {
+			width: 60%;
+			height: 4.7em;
+			padding-left: 25%;
+			font-size: 1em;
+		}
+		#make_info span {
+			font-size: 1.1em;
+			left: 11%;
+			line-height: 4.3em;
+		}
+	}
+	@media only screen and (min-width: 526px) {
+		#make_info input {
+			width: 66%;
+			height: 4.7em;
+			padding-left: 28%;
+			font-size: 1em;
+		}
+		#make_info span {
+			font-size: 1.2em;
+			line-height: 4.1em;
+			left: 11%;
+			margin-top: 0;
+		}
+	}
+	@media only screen and (min-width: 630px) {
+		#make_info input {
+			padding-left: 22%;
+		}
+	}
+	@media only screen and (min-width: 700px) {
+		#make_info input {
+			padding-left: 17%;
+		}
+		#make_info span {
+			font-size: 1.2em;
+			line-height: 4.1em;
+			left: 11%;
+			margin-top: 0;
+		}
+	}
+
+/*登录页面样式表*/
+
+#wrap_login {
+	width: 100%;
+	text-align: center;
+	padding-top: 17%;
+}
+#logo {
+	width: 100%;
+	margin-bottom: 20%;
+}
+#logo img {
+	width: 38%;
+}
+#content_login {
+	position: relative;
+	width: 80%;
+	margin: 15% auto;
+	margin-bottom: 0;
+}
+#content_login input {
+	width: 67%;
+	height: 4em;
+	border-radius: 4px;
+	border: none;
+	margin-bottom: 5%;
+	background: #f1f1f1;
+	padding-left: 21%;
+	padding-top: 0.2%;
+	font-size: 1em;
+	color: rgb(91,91,91);
+	font-family: mediumFont,"微软雅黑";
+	border: 1px solid #d1d1d1;
+}
+#content_login span {
+	position: absolute;
+	color: rgb(91,91,91);
+	font-family: boldFont,"微软雅黑";
+	font-size: 1.05em;
+	line-height: 4em;
+	left: 11%;
+	margin-top: 0;
+}
+#content_btn {
+	width: 100%;
+	margin: 8% auto;
+}
+#btn_login {
+	width: 70%;
+	border: none;
+	border-radius: 2px;
+	background: #008cd7;
+	color: #FFFFFF;
+	font-family: boldFont,"微软雅黑";
+	font-size: 1.6em;
+	line-height: 2.4em;
+	letter-spacing: .2em;
+}
+#btn_register {
+	display: block;
+	color: ;
+}
+	/*小屏手机（如iphone5）登录页面样式*/
+	@media only screen and (max-width: 321px) {	
+		#content_login input {
+			width: 63%;
+			padding-left: 25%;
+		}
+	}
+
+/*注册页面样式*/
+#content_register {
+	position: relative;
+	width: 80%;
+	margin: 5% auto;
+	margin-bottom: 0;
+}
+#content_register input {
+	width: 67%;
+	height: 4em;
+	border-radius: 4px;
+	border: 1px solid #d1d1d1;
+	margin-bottom: 5%;
+	background: #f1f1f1;
+	padding-left: 21%;
+	font-size: 1em;
+	color: rgb(91,91,91);
+	font-family: mediumFont,"微软雅黑";
+}
+#content_register span {
+	position: absolute;
+	color: rgb(91,91,91);
+	font-family: boldFont,"微软雅黑";
+	font-size: 1.05em;
+	line-height: 3.8em;
+	left: 11%;
+	margin-top: 0;
+}
+#content_register #username {
+	width: 62%;
+	padding-left: 25%;
+}
+#content_register #password_2 {
+	width: 57%;
+	padding-left: 30%;
+}
+#content_register img {
+	width: 87%;
+	margin-top: 4%;
+}
+
+/*小屏手机(如iphone5及以下)注册页面样式表*/
+	@media only screen and (max-width: 340px) {
+		#content_register input {
+			width: 67%;
+			height: 3.4em;
+			padding-left: 21%;
+			font-size: .9em;
+		}
+		#content_register span {
+			font-size: .9em;
+			line-height: 3.3em;
+			left: 11%;
+		}
+	}
+
+/*大屏手机及ipad注册页面适配样式*/
+	@media only screen and (min-width: 430px) {
+		#content_register input {
+			width: 70%;
+			padding-left: 18%;
+		}
+		#content_register #username {
+			width: 65%;
+			padding-left: 22%;
+		}
+		#content_register #password_2 {
+			width: 61%;
+			padding-left: 26%;
+		}
+	}
+	@media only screen and (min-width: 570px) {
+		#content_register input {
+			width: 73%;
+			padding-left: 15%;
+		}
+		#content_register #username {
+			width: 69%;
+			padding-left: 18%;
+		}
+		#content_register #password_2 {
+			width: 66%;
+			padding-left: 21%;
+		}
+	}
+	@media only screen and (min-width: 700px) {
+		#content_register input {
+			width: 75%;
+			padding-left: 13%;
+		}
+		#content_register #username {
+			width: 72%;
+			padding-left: 15%;
+		}
+		#content_register #password_2 {
+			width: 69%;
+			padding-left: 18%;
+		}
+	}
+	
+/*会员选择页面样式表*/
+.active_wrap {
+	position: fixed;
+	z-index: 1;
+}
+#active_input {
+	position: relative;
+	width: 100%;
+	margin: 10% auto 0;
+	text-align: center;
+	z-index: 1;
+}
+
+#active_input input {
+	width: 63%;
+	background: #F1F1F1;
+	font-family: boldFont,"微软雅黑";
+	font-size: 1.2em;
+	height: 3.3em;
+	border-radius: 4px;
+	border: 1px solid #D1D1D1;
+	padding-left: 3%;
+	margin-top: 1.2em;
+}
+#active_input img {
+	width: 4%;
+	margin-top: 2%;
+	margin-left: -8.2%;
+	cursor: pointer;
+}
+#active_input #category {
+	margin-left: -4%;
+}
+#content #explain {
+	width: 74%;
+	color: #464646;
+	font-family: boldFont,"微软雅黑";
+	font-weight: bold;
+	line-height: 1.8em;
+	margin: 2.5% auto;
+}
+.btn_active {
+	width: 64%;
+	margin-top: 4%;
+}
+#floating {
+	position: absolute;
+	right: 11%;
+	top: 4em;
+	z-index: 9999;
+	width: 14em;
+	height: 15em;
+	background: url(../img/checkbox_2.png) no-repeat;
+	background-size: contain;
+	text-align: center;
+}
+#floating span {
+	position: absolute;
+	left: 10%;
+	padding-right: 5em;
+	font-family: boldFont,"微软雅黑";
+	font-weight: normal;
+	font-size: 1.15em;
+	color: #464646;
+	cursor: pointer;
+}   
+.searcher {
+	top: 20%;
+}
+.partner {
+	top: 44%;
+}
+.item_VIP {
+	top: 70%;
+}
+#floating hr {
+	position: absolute;
+	top: 50%;
+	left: 10%;
+	width: 80%;
+	border: none;
+	height: 1px;
+	background: #f1f1f1;
+}
+#floating hr.hr1 {
+	top: 35%;
+}
+#floating hr.hr2 {
+	top: 60%;
+}
+#floating .pointer {
+	width: 15%;
+}
+#floating .pointer_3 {
+	width: 19%;
+}
+
+	/*小屏手机（如iphone5）激活页面样式*/
+	@media only screen and (max-width: 321px) {	
+		#floating {
+			top: 3em;
+			width: 12em;
+			height: 9em;
+			right: -2%;
+		}
+		#floating hr.hr1 {
+			top: 37%;
+		}
+		#floating hr.hr2 {
+			top: 66.7%;
+		}
+		#floating span {
+			left: 10%;
+			font-size: 1em;
+		}
+		#floating .pointer_3 {
+			width: 17%;
+			margin-left: -18%;
+		}
+		#floating hr {
+			width: 55%;
+		}
+		.item_VIP {
+			top: 73%;
+		}
+		#content #explain {
+			width: 74%;
+			font-size: .5em;
+			line-height: 1.5em;
+			margin: 2.5% auto;
+		}
+		#active_input input {
+			font-size: 1em;
+			height: 3em;
+		}
+	}
+	
+	/*大屏手机（如ipad）*/
+	@media only screen and (min-width: 530px) {
+		#floating {
+			right: 16%;
+		}
+		#floating span {
+			margin-left: 12%;
+			font-size: 1.3em;
+			padding-right: 2em;
+		}
+		#floating .pointer_3 {
+			width: 19%;
+			margin-left: -10%;
+		}
+		#content #explain {
+			width: 74%;
+			font-size: 1.2em;
+			line-height: 2em;
+		}
+	}

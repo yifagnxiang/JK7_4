@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "make";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+    <title>个人中心-定制页面</title>
+</head>
+<body>
+
+    <div id="wrap_make">
+        <div id="content">
+            <main>
+                <div id="page_make_1" class="">
+                    <div id="make_info">
+                        <input type="number" name="time" id="time" placeholder="例如20160701" /><span>出海时间：</span>
+                        <input type="number" name="number" id="number" value="" /><span>出海人数：</span>
+                        <input type="text" name="theme" id="theme" placeholder="例如聚会/会议" /><span>出海主题：</span>
+                        <input type="text" name="name" id="name" placeholder="" /><span>联系人：</span>
+                        <input type="tel" name="phone" id="phone" value="" /><span>联系方式：</span>
+                    </div>
+                    <img class="dingzhi" src="/img/btn5_ding.png" />
+                </div>
+                <div id="page_make_2" class="content_productCenter hide">
+                    <img class="emotion" src="/img/success6.png" />
+                    <span class="page_make_bold">您的定制需求提交成功</span><span class="page_make_medium1">客服人员会即刻联系您</span><span class="page_make_medium2">感谢您的信任！</span>
+                    <a href="/Home/make"><img class="btn_dingzhi" src="/img/continue6_ding.png" /></a>
+                </div>
+            </main>
+        </div>
+        <div id="footer">
+            <a href="/Home/Index"><div class="icon"></div></a>
+            <a href="/Home/goods_center"><div class="product_center">产品中心</div></a>
+            <a href="/Home/personal_center"><div class="VIPcenter">个人中心</div></a>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/Scripts/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".dingzhi").click(function () {
+                var time = $("#time").val(), number = $("#number").val(), theme = $("#theme").val(), phone = $("#phone").val(), name = $("#name").val();
+                if (time=="") {
+                    alert("请填写出海时间！");
+                    return;
+                }
+                else if(number==""){
+                    alert("请填写人数！");
+                    return;
+                }
+                else if (theme=="") {
+                    alert("请填写出海主题！");
+                    return;
+                }
+                else if (phone==""){
+                    alert("请填写联系方式！");
+                    return;
+                }
+                else if (name == "")
+                {
+                    alert("请填写联系人！");
+                    return;
+                }
+                $.post(
+                    "/Home/post_make",
+                    { name:name, phone:phone,time:time, number:number,theme:theme },
+                    function (data) {
+                        if (data == "Success") {
+                            alert("定制信息成功，稍后有工作人员联系您！");
+                            $('#page_make_2').removeClass('hide');
+                            $('#page_make_1').addClass('hide');
+                            return
+                        }
+                        else if (data == "Defeated") {
+                            alert("定制信息失败！");
+                            return;
+                        }
+                    }
+                    )
+            });
+        });
+    </script>
+</body>
+</html>
+

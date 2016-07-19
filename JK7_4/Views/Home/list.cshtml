@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "list";
+}
+
+ 
+
+@*@using (Html.BeginForm("Post_list", "Home", FormMethod.Post))
+{*@
+ <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#but_submit").click(function () {
+                var name = $("#name").val(), phone = $("#phone").val(), number = $("#number").val(), content = $("#content").val(), datetime = $("#datetime").val();
+                alert();
+                if (name == "") {
+                    alert("请填写姓名!");
+                    return;
+                }
+                if (phone == "") {
+                    alert("请填写手机或座机号码！");
+                    return;
+                }
+                if (number == "") {
+                    alert("请填定制人数!");
+                    return;
+                }
+                if (content == "") {
+                    alert("请填写定制内容!");
+                    return;
+                }
+                if (datetime == "") {
+                    alert("请填定制时间!");
+                    return;
+                }
+                $.post(
+                    "/Home/Post_list",
+                    { name: name, phone: phone, number: number, content: content, datetime: datetime },
+                    function (data) {
+                        if(data=="Success"){
+                            alert("定制信息已提交等待确实！");
+                            return;
+                        }
+                        else if(data=="Defeated") {
+                            alert("定制信息提交失败！");
+                            return;
+
+                        }
+                    }
+                    )
+            })
+
+           
+        })
+
+    </script>
+
+<h2>私人定制</h2>
+    <span>姓名：<input type="text" id="name" name="name" /><br /></span>
+    <span>手机号码：<input type="text" id="phone" name="phone" /><br /></span>
+    <span>参加人数：<input type="text" id="number" name="number" /><br /></span>
+    <span>定制内容：<input type="text" id="content" name="content" /><br /></span>
+    <span>时间：<input type="text" id="datetime" name="datetime" /><br /></span>
+    <input type="button" id="but_submit" value="提交" />
+@* }*@

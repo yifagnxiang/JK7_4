@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+@model IList<Model.Product>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<style type="text/css">
+    a {
+        text-decoration:none;
+        color:blue;
+    }
+        a:hover {
+            color:#2b6587;
+        
+        }
+</style>
+<script type="text/javascript" src="~/Scripts/jquery-1.9.1.min.js"></script>
+
+
+@foreach (var item in Model)
+{
+    <a href="/Appointment/Listappointment?id=@item.Id">
+          <div class="p_id"> @item.Id</div>
+            <img src="~/Upload/@item.JK_Product_Imgsrc" width="80" height="70" />
+            
+            <span>@item.JK_Product_Name</span>
+            <span>@item.JK_Product_Bewrite</span>
+    </a>
+    <hr />
+}

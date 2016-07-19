@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Activate";
+}
+
+<script src="~/Scripts/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#but_submit").click(function () {
+
+            var number_card = $("#number_card").val(), select_option = $("#select_option").val();
+            if (number_card == "") {
+                alert("会员类型不能为空！");
+                return;
+            }
+            if (select_option == "") {
+                alert("请输入激活卡号！");
+                return;
+            }
+            $.post("/Home/Post_Activate", { number_card: number_card, select_option: select_option }, function (data) {
+                if (data == "Success") {
+                    alert("激活成功！");
+                    return;
+                }
+                else if (data == "Defeated") {
+                    alert("激活失败！");
+                    return;
+                }
+                else if(data=="D") {
+                    alert("激活类型和卡号不正确！"); 
+                    return;
+                }
+                else if (data == "Activate")
+                {
+                    alert("此卡号已激活过！");
+                    return;
+                }
+            });
+        });
+    });
+  </script>
+<select id="select_option">
+    <option value="1">探索师</option>
+    <option value="2">体验官</option>
+    <option value="3">体验官</option>
+</select>
+<span><input name="number_card" id="number_card" type="text" size="14" placeholder="请输入卡号" maxlength="14" onkeyup='this.value=this.value.replace(/\D/gi,"")'></span>
+<input type="button" id="but_submit" value="激活卡号" />
+
+

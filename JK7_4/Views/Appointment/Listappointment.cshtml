@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Listappointment";
+}
+@model IList<Model.Product>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<style type="text/css">
+    .img_s {
+        display:none;
+    }
+</style>
+<script type="text/javascript" src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btu_submit").click(function () {
+            
+            var img = $("#img_s").val(), name = $("#name").text(), bewrite = $("#bewrite").text(), datetime = $("#datetime_1").val();
+            
+            if (datetime=="") {
+                alert("请填写预约时间！");
+                return;
+            }
+            $.post(
+                "/Appointment/add_product",
+                { img: img, name: name, bewrite: bewrite, datetime: datetime },
+                function (date) {
+                    if (date=="Success") {
+                        
+                        location.href = "/Appointment/Index";
+                        return alert("预约成功!");
+                    }
+                    else if (data == "Defeated")
+
+                    {
+                        return alert("预约失败！");
+                    }
+            })
+        })
+    })
+</script>
+<a href="/Appointment/Index"><input type="button" value="返回"/></a>
+   @foreach (var item in Model)
+    {
+            <img src="~/Upload/@item.JK_Product_Imgsrc" width="80" height="70" id="img_src" />
+           <input id="img_s" style="display:none;" type="text" value="@item.JK_Product_Imgsrc"  />
+            <div>
+                <span id="name">@item.JK_Product_Name</span>
+            </div>
+            <div>
+                <span id="bewrite">@item.JK_Product_Bewrite</span>
+            </div>
+     }
+    <div>预约时间：<input type="date" id="datetime_1" /></div><br />
+    <input type="button" id="btu_submit" value="我要预约" />

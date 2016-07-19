@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+    <title>会员注册页面</title>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $("#submit_1").click(function () {
+            var name = $("#username").val(), phone = $("#phone").val(), password = $("#password_1").val(), passwordsignup_confirm = $("#password_2").val();
+
+            if (phone == "") {
+                alert("请输入手机号码！");
+                return;
+            }
+            var re = /^(13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8}$/;
+            if (!re.test(phone)) {
+                alert("手机格式不对！");
+                return false;
+            }
+            if (password === "" || passwordsignup_confirm === "") {
+                alert("请输入密码或确认密码！")
+                return;
+            }
+            if (password != passwordsignup_confirm) {
+                alert("两次密码输入不一致！");
+                return;
+            }
+            $.post(
+                'Register/Register',
+                {
+                    name: name, password: password, phone: phone
+                },
+                function (data) {
+
+                    if (data == "Success") {
+                        alert("注册成功！")
+                        location.href = "/Login/Index";
+                        return;
+                    }
+                    else if (data == "Defeated") {
+                        alert("注册失败！");
+                        return;
+
+                    }
+                    else if (data == "Exist") {
+                        alert("用户已存在请从新注册！");
+                        return;
+                    }
+                }
+
+                )
+        });
+
+    });
+    </script>
+    
+</head>
+<body>
+    @*<div id="wrap_login">
+        <div id="content_register">
+            <input type="text" name="username" id="username" placeholder="请输入账号" /><span>用户名：</span>
+            <input type="text" name="phone" id="phone" placeholder="请输入手机号" /><span>手机：</span>
+            <input type="password" name="password" id="password_1" placeholder="请输入密码" /><span>密码：</span>
+            <input type="password" name="password" id="password_2" placeholder="请确认密码" /><span>确认密码：</span>
+            <a href="#" id="submit_1"><img src="/img/btn6.png" /></a>
+        </div>
+    </div>*@
+    <div id="wrap_login">
+        <div id="content_register">
+            <input type="text" name="username" id="username" placeholder="请输入账号" /><span>用户名：</span>
+            <input type="text" name="phone" id="phone" placeholder="请输入手机号" /><span>手机：</span>
+            <input type="password" name="password" id="password_1" placeholder="请输入密码" /><span>密码：</span>
+            <input type="password" name="password" id="password_2" placeholder="请确认密码" /><span>确认密码：</span>
+            <a href="#" id="submit_1"><img src="/img/btn6.png" /></a>
+        </div>
+    </div>
+</body>
+</html>

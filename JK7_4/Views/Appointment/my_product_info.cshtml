@@ -1,0 +1,30 @@
+﻿
+@*<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />*@
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Model.Product_Info>
+@*<script type="text/javascript" src="~/Scripts/jquery-1.9.1.min.js"></script>
+@{Html.RegisterMvcPagerScriptResource();}
+<script type="text/javascript">
+    $(function () {
+        @{ Ajax.LoadMvcPagerScript(); }
+    });
+</script>*@
+@if (Model==null)
+{
+    <div>亲没有预定信息！！！</div>
+    return;
+}
+<table>
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td><img src="~/Upload/@item.JK_Product_img_src" /></td>
+            <td>@item.JK_Product_name</td>
+            <td>@item.JK_Titile</td>
+        </tr>
+    }
+</table>
+
+
+@Ajax.Pager(Model, new PagerOptions { PageIndexParameterName = "id" })

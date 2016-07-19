@@ -1,0 +1,48 @@
+﻿@model IList<Model.Cstomization>
+@{
+    ViewBag.Title = "My_Cstomizaton_info";
+    if (Session["name"]==null)
+    {
+        Response.Write("<script> location.href = '/Login/Login'</script>");
+    }
+}
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<script>
+    location.href = "/Login/Login";
+</script>
+<style type="text/css">
+    ul {
+        list-style:none;
+        width:100%;
+    }
+        
+    
+
+</style>
+<h2>预定信息列表</h2>
+@if (Session["name"] != null)
+{
+
+    foreach (var item in Model)
+    {<ul>
+        联系人：
+        <li>@item.JK_Cstomziation_Name</li>
+        联系号码：
+        <li>@item.JK_Cstomzatio_Phone</li>
+        人数：
+        <li>@item.JK_Cstomization_Number</li>
+        定制内容：
+        <li>@item.JK_Cstomization_Context</li>
+        定制时间：
+        <li>@item.JK_Cstomation_Date</li>
+        添加时间：
+        <li>@item.JK_Cstomization_DateTime</li>
+    </ul>
+        <hr />
+    }
+}
+
+else
+{
+    Response.Write("<script>location.href='/Login/Login'</script>");
+}
