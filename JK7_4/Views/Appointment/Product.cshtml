@@ -5,7 +5,7 @@
 <script type="text/javascript">
     $(function () {
         $("#but_submit").click(function () {
-            var select_option_type = $("#select_option_type").val(), file_img = $(".content").val(), date = $(".date").val, price = $(".price").val(), number = $(".number").val(), pointOfDeparture = $(".pointOfDeparture").val();
+            var select_option_type = $("#select_option_type").val(), file_img = $(".file_img").val(), date = $(".date").val, price = $(".price").val(), number = $(".number").val(), pointOfDeparture = $(".pointOfDeparture").val(),title=$(".title").va(),content=$(".content").val();
 
             if (select_option_type=="0") {
                 alert("请填写会员类型");
@@ -25,9 +25,16 @@
            else if (number == "") {
                alert("请填写出海人数");
            }
+           else if (title == "")
+           {
+               alert("请填写标题");
+           }
+           else if (content == "") {
+               alert("请填写内容");
+           }
             $.post(
                 "/Appointment/post_product",
-                { select_option_type: select_option_type, file_img: file_img, price: price, number: number, date: date, pointOfDeparture: pointOfDeparture },
+                { select_option_type: select_option_type, file_img: file_img, price: price, number: number, date: date, pointOfDeparture: pointOfDeparture,title:title },
                 function (data)
                 {
                     if (data=="Success") {
@@ -62,6 +69,9 @@
 </select>
 <div>
     图片上传： <input type="file" name="file_img" id="file_img"/>
+</div>
+<div>
+    标题：<input type="text" name="title" class="title" />
 </div>
 <div>
    内容：<textarea name="content" class="content"></textarea>
