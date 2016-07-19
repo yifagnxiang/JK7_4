@@ -89,7 +89,7 @@ namespace DAL
         public Model.Appointment  SelectModel(int id)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append(@"select [Id],[JK_Appointment_Number],[JK_Appointment_Member_id],[JK_Appointment_Datetime],[JK_DateTime],[JK_Appointment_Context],[JK_Appointment_Phone] from [Appointment] ");
+            strSql.Append(@"select [Id],[JK_Appointment_Number],[JK_Appointment_Member_id],[JK_Appointment_Datetime],[JK_DateTime],[JK_Appointment_Context],[JK_Appointment_Phone],[JK_pointOfDeparture],[JK_Price] from [Appointment] ");
             strSql.Append(@" where [Id]=@id ");
             SqlParameter[] parameters = {
                     new SqlParameter("@id", SqlDbType.Int,4)};
@@ -117,7 +117,7 @@ namespace DAL
         public Model.Appointment  SelectModel(string whereStr)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append(@"select [Id],[JK_Appointment_Number],[JK_Appointment_Member_id],[JK_Appointment_Datetime],[JK_DateTime],[JK_Appointment_Context],[JK_Appointment_Phone] from [Appointment] ");
+            strSql.Append(@"select [Id],[JK_Appointment_Number],[JK_Appointment_Member_id],[JK_Appointment_Datetime],[JK_DateTime],[JK_Appointment_Context],[JK_Appointment_Phone],[JK_pointOfDeparture],[JK_Price] from [Appointment] ");
             if (whereStr.Trim() != "")
             {
                 strSql.Append(@" where " + whereStr);
@@ -150,7 +150,7 @@ namespace DAL
             {
                strSql.Append(" top "+top);
             }
-            strSql.Append(" [Id],[JK_Appointment_Number],[JK_Appointment_Member_id],[JK_Appointment_Datetime],[JK_DateTime],[JK_Appointment_Context],[JK_Appointment_Phone] from [Appointment] ");
+            strSql.Append(" [Id],[JK_Appointment_Number],[JK_Appointment_Member_id],[JK_Appointment_Datetime],[JK_DateTime],[JK_Appointment_Context],[JK_Appointment_Phone],[JK_pointOfDeparture],[JK_Price] from [Appointment] ");
             if (whereStr.Trim() != "")
             {
                 strSql.Append(@" where " + whereStr);
@@ -323,6 +323,8 @@ namespace DAL
            if (dr["JK_DateTime"].ToString() != "") model.JK_DateTime = DateTime.Parse (dr["JK_DateTime"].ToString());
            if (dr["JK_Appointment_Context"].ToString() != "") model.JK_Appointment_Context = dr["JK_Appointment_Context"].ToString();
            if (dr["JK_Appointment_Phone"].ToString() != "") model.JK_Appointment_Phone = dr["JK_Appointment_Phone"].ToString();
+           if (dr["JK_pointOfDeparture"].ToString() != "") model.JK_pointOfDeparture = dr["JK_pointOfDeparture"].ToString();
+           if (dr["JK_Price"].ToString() != "") model.JK_Price = decimal.Parse (dr["JK_Price"].ToString());
         }
         #endregion
 
@@ -339,7 +341,7 @@ namespace DAL
             {
                 StringBuilder strSql = new StringBuilder();
                 strSql.Append(@"insert into [Appointment]( ");
-                strSql.Append(@"[Id],[JK_Appointment_Number],[JK_Appointment_Member_id],[JK_Appointment_Datetime],[JK_DateTime],[JK_Appointment_Context],[JK_Appointment_Phone]) values (@id,@jK_Appointment_Number,@jK_Appointment_Member_id,@jK_Appointment_Datetime,@jK_DateTime,@jK_Appointment_Context,@jK_Appointment_Phone)");
+                strSql.Append(@"[Id],[JK_Appointment_Number],[JK_Appointment_Member_id],[JK_Appointment_Datetime],[JK_DateTime],[JK_Appointment_Context],[JK_Appointment_Phone],[JK_pointOfDeparture],[JK_Price]) values (@id,@jK_Appointment_Number,@jK_Appointment_Member_id,@jK_Appointment_Datetime,@jK_DateTime,@jK_Appointment_Context,@jK_Appointment_Phone,@jK_pointOfDeparture,@jK_Price)");
                 strSql.Append(";select @@IDENTITY");
                 SqlParameter[] parameters = new SqlParameter[] {
                     new SqlParameter("@id", SqlDbType.Int,4),
@@ -348,7 +350,9 @@ namespace DAL
                     new SqlParameter("@jK_Appointment_Datetime", SqlDbType.NVarChar,50),
                     new SqlParameter("@jK_DateTime", SqlDbType.DateTime,8),
                     new SqlParameter("@jK_Appointment_Context", SqlDbType.NChar,10),
-                    new SqlParameter("@jK_Appointment_Phone", SqlDbType.NVarChar,50)
+                    new SqlParameter("@jK_Appointment_Phone", SqlDbType.NVarChar,50),
+                    new SqlParameter("@jK_pointOfDeparture", SqlDbType.NVarChar,500),
+                    new SqlParameter("@jK_Price", SqlDbType.Money,8)
                     };
                 parameters[0].Value = model.Id;
                 parameters[1].Value = model.JK_Appointment_Number;
@@ -357,6 +361,8 @@ namespace DAL
                 parameters[4].Value = model.JK_DateTime;
                 parameters[5].Value = model.JK_Appointment_Context;
                 parameters[6].Value = model.JK_Appointment_Phone;
+                parameters[7].Value = model.JK_pointOfDeparture;
+                parameters[8].Value = model.JK_Price;
                 result = Convert.ToInt32(DAL.SqlDataHelper.GetScalar(strSql.ToString(), parameters));
             }
             catch (Exception)
@@ -382,7 +388,9 @@ namespace DAL
             strSql.Append("[JK_Appointment_Datetime] = @jK_Appointment_Datetime , ");
             strSql.Append("[JK_DateTime] = @jK_DateTime , ");
             strSql.Append("[JK_Appointment_Context] = @jK_Appointment_Context , ");
-            strSql.Append("[JK_Appointment_Phone] = @jK_Appointment_Phone ");
+            strSql.Append("[JK_Appointment_Phone] = @jK_Appointment_Phone , ");
+            strSql.Append("[JK_pointOfDeparture] = @jK_pointOfDeparture , ");
+            strSql.Append("[JK_Price] = @jK_Price ");
             strSql.Append("  where [Id]=@id");
             SqlParameter[] parameters =new SqlParameter[]  {
                     new SqlParameter("@jK_Appointment_Number", SqlDbType.Int,4),
@@ -391,6 +399,8 @@ namespace DAL
                     new SqlParameter("@jK_DateTime", SqlDbType.DateTime,8),
                     new SqlParameter("@jK_Appointment_Context", SqlDbType.NChar,10),
                     new SqlParameter("@jK_Appointment_Phone", SqlDbType.NVarChar,50),
+                    new SqlParameter("@jK_pointOfDeparture", SqlDbType.NVarChar,500),
+                    new SqlParameter("@jK_Price", SqlDbType.Money,8),
                     new SqlParameter("@id",SqlDbType.Int,4)
                                        };
                parameters[0].Value = model.JK_Appointment_Number;
@@ -399,7 +409,9 @@ namespace DAL
                parameters[3].Value = model.JK_DateTime;
                parameters[4].Value = model.JK_Appointment_Context;
                parameters[5].Value = model.JK_Appointment_Phone;
-                parameters[6].Value = model.Id;
+               parameters[6].Value = model.JK_pointOfDeparture;
+               parameters[7].Value = model.JK_Price;
+                parameters[8].Value = model.Id;
             try
             {
                 res = DAL.SqlDataHelper.ExecuteCommand(strSql.ToString(), parameters);
