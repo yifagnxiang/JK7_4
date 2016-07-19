@@ -24,6 +24,8 @@ namespace Model
         protected DateTime? jK_DateTime;
         protected string jK_Appointment_Context;
         protected string jK_Appointment_Phone;
+        protected string jK_pointOfDeparture;
+        protected decimal jK_Price;
         #endregion
 
 
@@ -83,6 +85,22 @@ namespace Model
         {
             set { jK_Appointment_Phone = value; }
             get { return jK_Appointment_Phone; }
+        }
+        /// <summary>
+        ///  字段说明：JK_pointOfDeparture
+        /// </summary>
+        public string JK_pointOfDeparture
+        {
+            set { jK_pointOfDeparture = value; }
+            get { return jK_pointOfDeparture; }
+        }
+        /// <summary>
+        ///  字段说明：JK_Price
+        /// </summary>
+        public decimal JK_Price
+        {
+            set { jK_Price = value; }
+            get { return jK_Price; }
         }
         #endregion
 
