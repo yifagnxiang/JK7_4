@@ -61,22 +61,31 @@ namespace JK7_4.Controllers
         {
             HttpFileCollectionBase files = Request.Files;
             fileData = files["file"];
-            string name, title, bewrite = "";
-            name=Library_public.Tool.GetSafeSqlandHtml( Request["name"]);
-            title = Library_public.Tool.GetSafeSqlandHtml( Request["title"]);
-            bewrite =Library_public.Tool.GetSafeSqlandHtml( Request["bewrite"]);
+            string title, bewrite, select_option_type, file_img, price, number, date, pointOfDeparture = "";
+            select_option_type = Library_public.Tool.GetSafeSqlandHtml(Request["select_option_type"]);
+            title = Library_public.Tool.GetSafeSqlandHtml(Request["title"]);
+            bewrite = Library_public.Tool.GetSafeSqlandHtml(Request["content"]);
+            file_img = Library_public.Tool.GetSafeSqlandHtml(Request["file_img"]);
+            price = Library_public.Tool.GetSafeSqlandHtml(Request["price"]);
+            number = Library_public.Tool.GetSafeSqlandHtml(Request["number"]);
+            date = Library_public.Tool.GetSafeSqlandHtml(Request["date"]);
+            pointOfDeparture = Library_public.Tool.GetSafeSqlandHtml(Request["pointOfDeparture"]);
             // 文件上传后的保存路径
             string filePath = Server.MapPath("~/Upload/");
             if (!Directory.Exists(filePath))
             {
                 Directory.CreateDirectory(filePath);
             }
+            if (fileData == null)
+            {
+                return Redirect("Product");
+            }
             string fileName = Path.GetFileName(fileData.FileName);// 原始文件名称
             string fileExtension = Path.GetExtension(fileName); // 文件扩展名
             string saveName = Guid.NewGuid().ToString() + fileExtension; // 保存文件名称
             fileData.SaveAs(filePath + saveName);
 
-            Model.Product product = new Model.Product {JK_Product_Name=name,JK_Product_DateTime=DateTime.Now,JK_Product_Imgsrc=saveName,JK_Product_parameten_1=title,JK_Product_Bewrite=bewrite };
+            Model.Product product = new Model.Product { JK_Product_DateTime = DateTime.Now, JK_Product_Imgsrc = saveName, JK_Product_parameten_1 = title, JK_Product_Bewrite = bewrite, };
             BLL.Product.Add(product);
             if (BLL.Product.Add(product) >= 1)
             {

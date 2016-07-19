@@ -17,6 +17,7 @@ namespace JK7_4
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
+                  //defaults: new { controller = "Appointment", action = "Product", id = UrlParameter.Optional }
             );
 
         }
